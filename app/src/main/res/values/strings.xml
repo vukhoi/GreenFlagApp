@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">GreenFlagApp</string>
+    <string name="tv_title">GreenFlag</string>
+    <string name="introduction">GreenFlag customers can\ncreate an account to access</string>
+    <string name="iv_title_content_description">green flag logo</string>
+    <string name="iv_tick_content_description">tick</string>
+    <string name="tV_tick0_text">Car health updates</string>
+    <string name="tV_tick2_text">Policy information</string>
+    <string name="tV_tick1_text">Request a rescue online</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="tv_back_button">toolbar back button</string>
+    <string name="btn_next">Next</string>
+    <string name="iv_redX_error">errorRedX</string>
+    <string name="tv_pwd_not_match">Your passwords don\'t match</string>
+    <string name="tv_invalid_pwd">One of the passwords you entered wasn\'t valid</string>
+    <string name="tv_existed_acc">An account already exists for this email address</string>
+</resources>
