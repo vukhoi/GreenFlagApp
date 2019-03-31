@@ -14,4 +14,17 @@
     <string name="tv_pwd_not_match">Your passwords don\'t match</string>
     <string name="tv_invalid_pwd">One of the passwords you entered wasn\'t valid</string>
     <string name="tv_existed_acc">An account already exists for this email address</string>
+    <string name="tv_invalid_email">Invalid email</string>
+    <string name="tv_edit_account">Edit Account</string>
+    <string name="et_name">Name</string>
+    <string name="et_user_name">Username</string>
+    <string name="et_pwd">Password</string>
+    <string name="btn_change_photo">Change Photo</string>
+    <string name="et_age">Age</string>
+    <string name="btn_choose_birth_date">Choose birth date</string>
+    <string name="rb_not_specified">Not specified</string>
+    <string name="rb_female">Female</string>
+    <string name="rb_male">Male</string>
+    <string name="et_postal_address">Postal Address</string>
+    <string name="btn_save">Save</string>
 </resources>
