@@ -74,7 +74,8 @@ public class CreateAccountActivity extends AppCompatActivity {
                     DatabaseManager db = new DatabaseManager(getApplicationContext());
                     db.insert(new Account(email, pwd));
                     Intent intent = new Intent(CreateAccountActivity.this, AddAccountDetailActivity.class);
-                    intent.putExtra(email, pwd);
+                    intent.putExtra("email", email);
+                    intent.putExtra("pwd", pwd);
                     startActivity(intent);
                 }
                 else{

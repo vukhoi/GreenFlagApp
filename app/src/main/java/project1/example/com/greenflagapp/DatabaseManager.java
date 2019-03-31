@@ -86,6 +86,20 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void updateByEmail(Account acc, String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String updateQuery = "update " + ACCOUNT_TABLE;
+
+        updateQuery += String.format(Locale.getDefault()," set %s = \"%s\", %s = \"%s\", %s = \"%s\", %s = \"%s\", %s = %d, %s = \"%s\", %s = \"%s\", %s = \"%s\""
+                , NAME, acc.getName(), USERNAME, acc.getUsername(), PASSWORD, acc.getPassword(), PHOTO, acc.getPhoto()
+                , AGE, acc.getAge(), BIRTHDATE, acc.getBirthDate(), GENDER, acc.getGender() , POSTALADDRESS, acc.getPostalAddress());
+
+
+        updateQuery += "where " + EMAIL + " = \"" + email + "\"";
+        db.execSQL(updateQuery);
+        db.close();
+    }
 
     public Account selectById(String id) {
         String sqlQuery = "select * from " + ACCOUNT_TABLE;
@@ -121,15 +135,16 @@ public class DatabaseManager extends SQLiteOpenHelper {
             Log.d("selectById", " no such acc found");
         }
         else{
-            String name = cursor.getString(0);
-            String username = cursor.getString(1);
-            String password = cursor.getString(1);
-            String photo = cursor.getString(1);
-            String email = cursor.getString(1);
-            int age = Integer.parseInt(cursor.getString(1));
-            String birthDate = cursor.getString(1);
-            String gender = cursor.getString(1);
-            String postalAddress = cursor.getString(1);
+            int id = Integer.parseInt(cursor.getString(0));
+            String name = cursor.getString(1);
+            String username = cursor.getString(2);
+            String password = cursor.getString(3);
+            String photo = cursor.getString(4);
+            String email = cursor.getString(5);
+            int age = Integer.parseInt(cursor.getString(6));
+            String birthDate = cursor.getString(7);
+            String gender = cursor.getString(8);
+            String postalAddress = cursor.getString(9);
 
 
             acc = new Account(name, username, photo, password, email, age, birthDate,gender, postalAddress);
