@@ -163,6 +163,7 @@ public class AddAccountDetailActivity extends AppCompatActivity {
     }
 
     private void updateDB() {
+        getGender();
         DatabaseManager db = new DatabaseManager(AddAccountDetailActivity.this);
         Account acc = new Account(etName.getText().toString(), etUserName.getText().toString(), etPwd.getText().toString(), photoURI
                 , accEmail, Integer.parseInt(etAge.getText().toString()), etBirthDate.getText().toString(), gender, etPostalAddress.getText().toString());
