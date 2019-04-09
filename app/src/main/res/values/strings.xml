@@ -27,4 +27,6 @@
     <string name="rb_male">Male</string>
     <string name="et_postal_address">Postal Address</string>
     <string name="btn_save">Save</string>
+    <string name="tv_list_account">Activity List Account</string>
+    <string name="btn_clr_db">clear db</string>
 </resources>

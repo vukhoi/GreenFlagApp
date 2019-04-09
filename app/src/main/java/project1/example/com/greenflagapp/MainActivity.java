@@ -8,6 +8,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     Button btnCreateNewActivity;
+    Button btnListActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,5 +25,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnListActivity = findViewById(R.id.btn_list_activity);
+        btnListActivity.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ListAccountActivity.class);
+                intent.putExtra("email", "test");
+                startActivity(intent);
+            }
+        });
     }
 }

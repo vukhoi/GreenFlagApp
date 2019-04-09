@@ -76,9 +76,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
         String updateQuery = "update " + ACCOUNT_TABLE;
 
         updateQuery += String.format(Locale.getDefault()," set %s = %s, %s = %s, %s = %s, %s = %s, %s = %s, %s = %d, %s = %s, %s = %s, %s = %s"
-            , NAME, acc.getName(), USERNAME, acc.getUsername(), PASSWORD, acc.getPassword(), PHOTO, acc.getPhoto()
-            , EMAIL, acc.getEmail(), AGE, acc.getAge(), BIRTHDATE, acc.getBirthDate(), GENDER, acc.getGender()
-            , POSTALADDRESS, acc.getPostalAddress());
+                , NAME, acc.getName(), USERNAME, acc.getUsername(), PASSWORD, acc.getPassword(), PHOTO, acc.getPhoto()
+                , EMAIL, acc.getEmail(), AGE, acc.getAge(), BIRTHDATE, acc.getBirthDate(), GENDER, acc.getGender()
+                , POSTALADDRESS, acc.getPostalAddress());
 
 
         updateQuery += "where name ID = " + id;
@@ -104,12 +104,16 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public Account selectById(String id) {
         String sqlQuery = "select * from " + ACCOUNT_TABLE;
         sqlQuery += " where id = " + id;
-
+        Account acc = null;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sqlQuery, null);
-
-        Account acc = createAccFromCursor(cursor);
-
+        cursor.moveToFirst();
+        if (cursor.moveToFirst()){
+            acc = createAccFromCursor(cursor);
+        }
+        else{
+            Log.d("select ", "cursor return false");
+        }
         cursor.close();
 
         return acc;
@@ -118,23 +122,28 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public Account selectByEmail(String email) {
         String sqlQuery = "select * from " + ACCOUNT_TABLE;
         sqlQuery += " where " + EMAIL + " = \"" + email + "\"";
-
+        Account acc = null;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sqlQuery, null);
-
-        Account acc = createAccFromCursor(cursor);
-
+        if (cursor.moveToFirst()) {
+            acc = createAccFromCursor(cursor);
+        }
+        else{
+            Log.d("select ", "cursor return false");
+        }
         cursor.close();
 
         return acc;
     }
 
-    private Account createAccFromCursor(Cursor cursor) {
+    public Account createAccFromCursor(Cursor cursor) {
         Account acc = null;
         if (cursor.getCount() == 0) {
             Log.d("selectById", " no such acc found");
         }
         else{
+            Log.d("cursor test", cursor + "\t" + cursor.getCount());
+            Log.d("create acc from cursor", cursor.getString(2) + " 2 " + cursor.getString(3) + " 3 " + cursor.getString(4) + " 4");
             int id = Integer.parseInt(cursor.getString(0));
             String name = cursor.getString(1);
             String username = cursor.getString(2);
@@ -147,24 +156,33 @@ public class DatabaseManager extends SQLiteOpenHelper {
             String postalAddress = cursor.getString(9);
 
 
-            acc = new Account(name, username, photo, password, email, age, birthDate,gender, postalAddress);
+            acc = new Account(name, username, password, photo, email, age, birthDate,gender, postalAddress);
+            Log.d("checkAcc", acc.toString());
         }
         return acc;
     }
 
-    public ArrayList<Account> selectAll(String table){
+    public ArrayList<Account> selectAll(){
         String sqlQuery = "select * from " + ACCOUNT_TABLE;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sqlQuery, null);
         ArrayList<Account> accs = new ArrayList<Account>();
+        cursor.moveToFirst();
         if (cursor.getCount() > 0) {
             do {
-               createAccFromCursor(cursor);
+                accs.add(createAccFromCursor(cursor));
+                Log.d("select all ", accs.size() + " " + accs.get(accs.size()-1).toString());
             } while (cursor.moveToNext());
         }
 
         return accs;
+    }
+
+    public void clearDb(){
+        String sqliteQuery = "delete from " + ACCOUNT_TABLE;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(sqliteQuery);
     }
 
 }

@@ -110,4 +110,16 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_introduction"
         app:layout_constraintVertical_bias="1.0" />
 
+    <Button
+        android:id="@+id/btn_list_activity"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/iv_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
 </android.support.constraint.ConstraintLayout>

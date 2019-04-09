@@ -23,9 +23,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import project1.example.com.greenflagapp.R;
-import project1.example.com.greenflagapp.model.Account;
-import project1.example.com.greenflagapp.model.DatabaseManager;
 
 public class ListAccountActivity extends AppCompatActivity {
 
